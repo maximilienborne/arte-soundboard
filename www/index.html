@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backbone boilerplate</title>
+</head>
+<body>
+    <script src="js/env-config.js"></script>
+    <script>
+        var filename = (window.ENV_CONFIG && window.ENV_CONFIG.minify) ? 'dist/app-built.js' : 'bootstrap.js';
+        filename += (window.ENV_CONFIG && window.ENV_CONFIG.isCache) ? '' : '?bust=' + window.ENV_CONFIG.urlArgs;
+        document.write('<script data-main="js/' + filename + '" src="js/vendors/requirejs/require.js"><\/script>');
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+@import "compass";
+@import "compass/reset";
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// variable exemple
+//
+//---------------------------------------------------------------------------------------------------------
+
+$examplevariable : #ff0000;
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// legacy support for old browsers
+//
+//---------------------------------------------------------------------------------------------------------
+
+$legacy-support-for-ie6:false;
+$legacy-support-for-ie7:false;
+
+// --------------------------------------------------------------------------------------------------------
+//
+// sprite mixings and example
+//
+//---------------------------------------------------------------------------------------------------------
+
+
+// params = spriteConfigPath+path, space between images, display of img in sprite : horizontal, vertical, diagonal, smart
+$socialicons: sprite-map("socialicons/16/*.png", $spacing: 5px, $layout: smart);
+
+// another way which generates .folder-file classes
+// $myfolder-spacing: 5px;
+// $myfolder-layout:diagonal;
+// @import "folder/*.png";
+
+
+// retina sprite
+$socialiconsRETINA: sprite-map("socialicons/32/*.png", $spacing: 5px, $layout: smart);
+
+// $map = sprite name $sprite = icon file name
+@mixin sprite-background($map, $sprite) {
+    background-position: sprite-position($map, $sprite);
+    @include sprite-dimensions($map, $sprite);
+    // or height: image-height(sprite-file($map, $sprite));
+    // or width: image-width(sprite-file($map, $sprite));
+    margin-left: -(image-width(sprite-file($map, $sprite)))/2;
+    margin-top: -(image-height(sprite-file($map, $sprite)))/2;
+}
+
+@mixin spriteSize($map, $sprite) {
+    background: $map;
+    background-position: sprite-position($map, $sprite);
+    height: image-height(sprite-file($map, $sprite));
+    width: image-width(sprite-file($map, $sprite));
+}
+
+@mixin centeredPicto($map, $sprite) {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    @include spriteSize($map, $sprite);
+    margin-left: -(image-width(sprite-file($map, $sprite)))/2;
+    margin-top: -(image-height(sprite-file($map, $sprite)))/2;
+}
+
+
+// generic classes for social icons
+[class^="socialicons-"],
+[class*=" socialicons-"] {
+    background-repeat: no-repeat;
+    background-image: sprite-url($socialicons);
+    @media (-webkit-min-device-pixel-ratio: 1.5),
+    (-o-min-device-pixel-ratio: 3/2),
+    (min-device-pixel-ratio: 1.5) {
+        background-image: sprite-url($socialiconsRETINA);
+        background-size: ceil(image-width(sprite-path($socialiconsRETINA)) / 2) auto;
+    }
+}
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// css easing animations
+//
+//---------------------------------------------------------------------------------------------------------
+
+$easeInQuad     : cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$easeInCubic    : cubic-bezier(0.550, 0.055, 0.675, 0.190);
+$easeInQuart    : cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$easeInQuint    : cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$easeInSine     : cubic-bezier(0.470, 0.000, 0.745, 0.715);
+$easeInExpo     : cubic-bezier(0.950, 0.050, 0.795, 0.035);
+$easeInCirc     : cubic-bezier(0.600, 0.040, 0.980, 0.335);
+$easeInBack     : cubic-bezier(0.600, -0.280, 0.735, 0.045);
+
+$easeOutQuad    : cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$easeOutCubic   : cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$easeOutQuart   : cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$easeOutQuint   : cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$easeOutSine    : cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$easeOutExpo    : cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$easeOutCirc    : cubic-bezier(0.075, 0.820, 0.165, 1.000);
+$easeOutBack    : cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+$easeInOutQuad  : cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$easeInOutCubic : cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$easeInOutQuart : cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$easeInOutQuint : cubic-bezier(0.860, 0.000, 0.070, 1.000);
+$easeInOutSine  : cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$easeInOutExpo  : cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$easeInOutCirc  : cubic-bezier(0.785, 0.135, 0.150, 0.860);
+$easeInOutBack  : cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// transition example
+//
+//---------------------------------------------------------------------------------------------------------
+
+//a{
+// @include transition(all 250ms $easeOutCubic);
+// &:hover{
+//     color:#fff;
+//  }
+//}
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// clearfix mixing
+//
+//---------------------------------------------------------------------------------------------------------
+
+@mixin clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// position relative or absolute elements in top right bottom left; choose if fullsize
+//
+//---------------------------------------------------------------------------------------------------------
+
+
+@mixin position ($position: relative, $coordinates: 0 0 0 0, $fullsize:false) {
+
+  @if type-of($position) == list {
+    $coordinates: $position;
+    $position: relative;
+  }
+  @if($fullsize == true){
+    width:100%;
+    height:100%;
+  }
+  $top: nth($coordinates, 1);
+  $right: nth($coordinates, 2);
+  $bottom: nth($coordinates, 3);
+  $left: nth($coordinates, 4);
+
+  position: $position;
+
+  @if $top == auto {
+    top: $top;
+  }
+  @else if not(unitless($top)) {
+    top: $top;
+  }
+
+  @if $right == auto {
+    right: $right;
+  }
+  @else if not(unitless($right)) {
+    right: $right;
+  }
+
+  @if $bottom == auto {
+    bottom: $bottom;
+  }
+  @else if not(unitless($bottom)) {
+    bottom: $bottom;
+  }
+
+  @if $left == auto {
+    left: $left;
+  }
+  @else if not(unitless($left)) {
+    left: $left;
+  }
+}
+
+// --------------------------------------------------------------------------------------------------------
+//
+// placeholder options
+//
+//---------------------------------------------------------------------------------------------------------
+
+@mixin placeholder {
+    &.placeholderfbk { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+}
+
+// --------------------------------------------------------------------------------------------------------
+//
+// global active hover focus state
+//
+//---------------------------------------------------------------------------------------------------------
+
+@mixin hoverState {
+    &:active { @content; }
+    &:focus { @content; }
+    &:hover { @content; }
+}
+
+// --------------------------------------------------------------------------------------------------------
+//
+// hide content text
+//
+//---------------------------------------------------------------------------------------------------------
+
+@mixin hiddenText {
+    display: block;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+// --------------------------------------------------------------------------------------------------------
+//
+// hide full content
+//
+//---------------------------------------------------------------------------------------------------------
+
+@mixin absolute9999 {
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+}
