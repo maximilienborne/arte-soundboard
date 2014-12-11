@@ -39,6 +39,7 @@ line_comments = false
 on_sprite_saved do |filename|
   if File.exists?(filename)
     FileUtils.cp filename, filename.gsub(%r{-s[a-z0-9]{10}\.png$}, '.png')
+    FileUtils.rm_rf(filename)
   end
 end
 
