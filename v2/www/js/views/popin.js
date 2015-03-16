@@ -12,7 +12,8 @@ define([
         template: _.template(tmp),
 		
 		events: {
-			'click .close': 'onClose'
+			'click .close': 'onClose',
+			'click .overlay': 'onClose'
 		},
         
         initialize: function() {},

@@ -34,14 +34,12 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            //ga('create', 'UA-XXXXXXXX-X', 'auto');
-
+            ga('create', 'UA-XXXXXXXX-X', 'auto');
         </script>
         <!-- End Google Analytics -->
         
         <!-- Facebook SDK -->
         <script>
-            
             window.fbAsyncInit = function() {
                 FB.init({
                     appId      : XXXXXXXXXXXXX,
@@ -49,7 +47,7 @@
                     version    : 'v2.0'
                 });
             };
-            
+			
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}

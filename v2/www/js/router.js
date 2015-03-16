@@ -2,36 +2,42 @@ define([
     
     'backbone'
     , 'services/loader'
-    , 'collections/assets'
     , 'services/window-profiler'
     , 'services/server-handler'
+	, 'services/views-handler'
     , 'services/tracker'
-	, 'views/loader'
 	, 'views/header'
 	, 'views/footer'
 	, 'views/home'
 	, 'views/contact'
 	, 'views/popin'
+	, 'views/nav'
+	, 'views/equipe'
+	, 'views/404'
     
 ], function(
         Backbone,
         Loader,
-        Assets,
         windowProfiler,
         serverHandler,
+		viewsHandler,
         tracker,
-		LoaderView,
 		HeaderView,
 		FooterView,
 		HomeView,
 		ContactView,
-		PopinView
+		PopinView,
+		NavView,
+		EquipeView,
+		P404View
     ) {
     
     var Router = Backbone.Router.extend({
         routes: {
             '(p/:popin)': 'onHomepage',
-			'contact(/p/:popin)': 'onContact'
+			'contact(/p/:popin)': 'onContact',
+			'equipe(/p/:popin)': 'onEquipe',
+			'*path': 'on404'
         },
         
         initialize: function() {
@@ -39,10 +45,13 @@ define([
             // On instancie le loader (si nécessaire...)
             this.loader = new Loader();
             
-            // Arrays contenant les vues (à afficher/supprimer)
-            this.toDisplay = [];
-            this.toRemove = [];
-            
+			// Liste des popins (key = url, value = vue Backbone)
+			var popins = {
+				'popin': PopinView
+			}
+			
+			// Initialisation de l'objet de gestion des transitions
+			viewsHandler.initialize({$el: $('#main'), popins: popins});
             // Initialisation du windowProfiler (taille de l'écran, type de client, etc..)
 			windowProfiler.initialize();
             // et du serverHandler (gestion du dialogue client/server)
@@ -50,39 +59,11 @@ define([
             // Initialisation du tracker (pour la remontée des stats)
             tracker.initialize();
             
-            var d1 = new $.Deferred();
-            
-            // On récupère la liste des assets à charger
-            $.getJSON('json/assets.json', _.bind(function(data) {
-               
-               // On en fait une collection
-               this.assetsCollection = new Assets(data.assets);
-               
-               // On instancie la vue du loader en lui passant la collection d'assets
-               this.loaderView = new LoaderView({collection: this.assetsCollection});
-               $('#main').append(this.loaderView.render());
-               
-               // On demande au loader de charger notre collection d'assets
-               this.loader.load(this.assetsCollection, d1);
-               
-               // La collection d'assets sera mise à jour par le loader
-               // passant la clé "loaded" de chaque asset à "true" au fur et à mesure
-               // la vue du loader écoute ces changements et se met à jour en conséquence
-               
-            }, this));
-            
-            $.when(d1).done(_.bind(function() {
-				
-                // On supprime le loader ainsi que sa vue
-                this.loaderView.$el.fadeOut(_.bind(function() {
-                    
-                    this.loaderView.remove();
-                    delete this.loader;
-                    
-                    Backbone.history.start();
-                    
-                }, this));
-            }, this));
+			// Si des assets ont besoin d'être chargés
+			// avant de lancer le routeur
+			this.loader.loadAssetsBeforeStart('json/assets.json', $('#main'));
+			// Sinon
+			//Backbone.history.start();
         },
         
         onHomepage: function() {
@@ -90,14 +71,15 @@ define([
 			// Exemple
 			
 			this.headerView = this.headerView || new HeaderView();
+			this.navView = this.navView || new NavView();
 			this.homeView = this.homeView || new HomeView();
 			this.footerView = this.footerView || new FooterView();
 			
-			var viewsArr = [this.headerView, this.homeView, this.footerView];
+			var viewsArr = [this.headerView, this.navView, this.homeView, this.footerView];
 			
 			
-			this.getPopin(viewsArr);
-            this.transition(viewsArr, 'home');
+			viewsHandler.getPopin(viewsArr);
+            viewsHandler.getTransition(viewsArr, 'home', false, true);
 			
         },
 		
@@ -106,114 +88,43 @@ define([
 			// Exemple
 			
 			this.headerView = this.headerView || new HeaderView();
+			this.navView = this.navView || new NavView();
 			this.contactView = this.contactView || new ContactView();
 			this.footerView = this.footerView || new FooterView();
 			
-			var viewsArr = [this.headerView, this.contactView, this.footerView];
+			var viewsArr = [this.headerView, this.navView, this.contactView, this.footerView];
 			
-			
-			this.getPopin(viewsArr);
-            this.transition(viewsArr, 'contact');
+			viewsHandler.getPopin(viewsArr);
+            viewsHandler.getTransition(viewsArr, 'contact');
 			
 		},
 		
-		getPopin: function(viewsArr) {
-			if(Backbone.history.fragment.indexOf('p/') === -1) return;
+		onEquipe: function() {
 			
-			var urlParams = String(Backbone.history.fragment).split('/'),
-				i = _.indexOf(urlParams, 'p'),
-				popinId = urlParams[i + 1];
+			// Exemple
 			
-			this.popinView = '';
+			this.headerView = this.headerView || new HeaderView();
+			this.navView = this.navView || new NavView();
+			this.equipeView = this.equipeView || new EquipeView();
+			this.footerView = this.footerView || new FooterView();
 			
-			switch(popinId) {
-				
-                case 'popin':
-                this.popinView = this.popinView || new PopinView();
-                break;
-				
-            }
+			var viewsArr = [this.headerView, this.navView, this.equipeView, this.footerView];
 			
-			if(this.popinView !== '') {
-				viewsArr.push(this.popinView);
-			}
+			viewsHandler.getPopin(viewsArr);
+            viewsHandler.getTransition(viewsArr, 'equipe');
+			
 		},
-        
-        transition: function(viewsArray, mainClass) {
-            
-			// On copie les vues en cours d'affichage dans l'array contenant les vues à supprimer
-            this.toRemove = this.toDisplay.slice(0);
-            // On vide l'array des vues en cours d'affichage et le remplit avec celles instanciées ci-dessus
-            this.toDisplay = [];
-            this.toDisplay = viewsArray;
+		
+		on404: function() {
+			this.p404View = this.p404View || new P404View();
+			this.contactView = this.contactView || new ContactView();
 			
-			//
-            //      BEHAVIOR :
-            //      ----------
-            //
-            //      'this.toDisplay' array contains a list of views that we have to display.
-            //      'this.toRemove' array contains a list of views that we have to remove.
-            //
-            // 1 -  Check if there is shared elements between toDisplay and toRemove arrays.
-            //      If yes, we remove them from both arrays.
-            //      (We don't have to display it or to remove it, we just let it like it is)
-            //
-            // 2 -  Loop over toRemove views, hide and remove them
-            // 3 -  Loop over toDisplay views, render and show them, that's all !
-            //
-            
-            // -> 1
-            var common = _.intersection(this.toDisplay, this.toRemove),
-                toDsply = _.difference(this.toDisplay, common),
-                toRmv = _.difference(this.toRemove, common);
-            
-            // -> 3 -> 2
-            var fadeIn = function(v) {
-                v.$el.fadeIn(function() {
-                    if(v.onShow) v.onShow();
-                });
-            }
-            
-            // -> 3 -> 1
-            var display = _.bind(function() {
-                
-                window.scrollTo(0, 0);
-                $('#main').removeClass().addClass(mainClass);
-                
-                for(var i=0; i<toDsply.length; i++) {
-                    var v = toDsply[i],
-                        $v = v.render();
-                        $v.css('display', 'none');
-                        v.delegateEvents();
-                    
-                    if(v.onRender) v.onRender();
-                    $('#main').append($v);
-                    fadeIn(v);
-                }
-                
-            }, this);
-            
-            // -> 2 -> 2
-            var fadeOut = function(v, i) {
-                v.$el.fadeOut(function() {
-                    v.remove();
-                    
-                    if(i===toRmv.length-1) display();
-                });
-            }
-            
-            // -> 2 -> 1
-            if(!toRmv.length) display();
-            
-            for(var t=0; t<toRmv.length; t++) {
-                var v = toRmv[t];
-                fadeOut(v, t);
-            }
-        }
+			var viewsArr = [this.p404View, this.contactView];
+			viewsHandler.getTransition(viewsArr, 'p404');
+		}
     });
     
     var initialize = function() {
-        
         var router = new Router();
     }
     
