@@ -3,18 +3,18 @@
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-http_path = "/"
-css_dir = "www/css"
-sass_dir = "sass"
-images_dir = "www/img"
-fonts_dir = "www/css/fonts"
-javascripts_dir = "www/js"
-generated_images_dir = "www/img"
+http_path = "../"
+css_dir = "../www/css"
+sass_dir = "../sass"
+images_dir = "../www/img"
+fonts_dir = "../www/css/fonts"
+javascripts_dir = "../www/js"
+generated_images_dir = "../www/img"
 #dossier sprite avec les images à générer en sprite
-sprite_load_path = ["sprites/"]
+sprite_load_path = ["../sprites/"]
 
 #environment = :production
-environment = :developpement
+#environment = :developpement
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
