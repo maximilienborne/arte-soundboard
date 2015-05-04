@@ -1,29 +1,49 @@
 /* ------------------------------------------------------ */
+/* TYPO
+/* ------------------------------------------------------ */
+
+$std :'gillsansstd';
+$light : 'gillsansstd-light';
+$bold : 'gillsansstd-bold';
+
+/* ------------------------------------------------------ */
 /* COLORS
 /* ------------------------------------------------------ */
 
+/* Text colors */
+$txt:black;
+$txt-lighter:black;
+$txt-darker:black;
 
-/* ------------------------------------------------------ */
-/* MIXIN
-/* ------------------------------------------------------ */
+/* Defaults neutral colors for borders & background*/
+$border:grey;
+$border-lighter:grey;
+$border-darker:grey;
+$background:grey;
+$background-lighter:grey;
+$background-darker:grey;
 
-@mixin font-size($size) {
-    font-size: $size + px;
-    font-size: ($size / 10) + rem;
-}
+/* Forms */
+$error:red;
 
-/* ------------------------------------------------------ */
-/* NOTES
-/* ------------------------------------------------------ */
+/* Theme */
+$main:#7f8fa3;
+$main-lighter:#19afe4;
+$main-darker:#003c82;
+$second:#144492;
+$second-lighter:#e2e2e2;
+$second-darker:#b8b7b7;
 
-/* BREAK POINTS                                           */
+/* BREAK POINTS, may have to adapt at the beginning, depending of the application */
 
-// main max width : 980px;
-// tablet portrait : 800px
-// mobile : 580px;
-
-// examples size :
-// nexus 5 (360 * 519)
+$eddard:  1720px;
+$catelyn:  1496px;
+$jon:  1248px;
+$robb:   1024px;
+$sansa:  768px;
+$arya:  640px;
+$bran:  568px;
+$rickon:  480px;
 
 /* ------------------------------------------------------ */
 /* CSS EASING ANIMATION
@@ -55,7 +75,3 @@ $easeInOutSine  : cubic-bezier(0.445, 0.050, 0.550, 0.950);
 $easeInOutExpo  : cubic-bezier(1.000, 0.000, 0.000, 1.000);
 $easeInOutCirc  : cubic-bezier(0.785, 0.135, 0.150, 0.860);
 $easeInOutBack  : cubic-bezier(0.680, -0.550, 0.265, 1.550);
-
-
-
-

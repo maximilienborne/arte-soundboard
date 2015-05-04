@@ -9,24 +9,24 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link href="css/main.css" rel="stylesheet" type="text/css">
-        
+
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        
+
         <!-- JS file setting environment variable -->
         <script src="js/env-config.js"></script>
-        
+
     </head>
     <body>
-        
-        <div id="wrapper">
-            <div id="main">
+
+        <div id="wrapper" class="l-wrapper">
+            <div id="main" class="l-main">
             </div>
         </div>
-        
+
         <!-- Google Analytics -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,7 +37,7 @@
             ga('create', 'UA-XXXXXXXX-X', 'auto');
         </script>
         <!-- End Google Analytics -->
-        
+
         <!-- Facebook SDK -->
         <script>
             window.fbAsyncInit = function() {
@@ -47,7 +47,7 @@
                     version    : 'v2.0'
                 });
             };
-			
+
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}
@@ -57,13 +57,13 @@
             }(document, 'script', 'facebook-jssdk'));
         </script>
         <!-- /Facebook SDK -->
-        
+
         <!-- Load bootstrap or compiled JS according to environment variable -->
         <script>
             var file = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'main.js' : 'dist/app-built.js';
             file = file + '?bust=' + window.ENV_CONFIG.version;
             document.write('<script data-main="js/' + file + '" src="js/libs/require.js"><\/script>');
         </script>
-        
+
     </body>
 </html>

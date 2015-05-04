@@ -3,6 +3,10 @@
    Helper classes
    ========================================================================== */
 
+.inline-block{
+    display: inline-block;
+}
+
 /*
  * Image replacement
  */
@@ -106,10 +110,10 @@
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+/* @media only screen and (min-width: 35em) {
+    Style adjustments for viewports that meet the condition
 }
-
+ */
 @media print,
        (-o-min-device-pixel-ratio: 5/4),
        (-webkit-min-device-pixel-ratio: 1.25),
@@ -123,14 +127,14 @@
    ========================================================================== */
 
 @media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+    //* {
+  //      background: transparent !important;
+  //      color: #000 !important; /* Black prints faster: h5bp.com/s */
+ //       box-shadow: none !important;
+ //       text-shadow: none !important;
+   // }
 
-    a,
+    /* a,
     a:visited {
         text-decoration: underline;
     }
@@ -141,13 +145,13 @@
 
     abbr[title]:after {
         content: " (" attr(title) ")";
-    }
+    } */
 
     /*
      * Don't show links for images, or javascript/internal links
      */
 
-    .ir a:after,
+    /* .ir a:after,
     a[href^="javascript:"]:after,
     a[href^="#"]:after {
         content: "";
@@ -157,13 +161,13 @@
     blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
-    }
+    } */
 
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
+ //   thead {
+ //       display: table-header-group; /* h5bp.com/t */
+  //  }
 
-    tr,
+    /* tr,
     img {
         page-break-inside: avoid;
     }
@@ -186,5 +190,5 @@
     h2,
     h3 {
         page-break-after: avoid;
-    }
+    } */
 }
