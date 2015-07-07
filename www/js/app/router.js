@@ -13,8 +13,7 @@ define([
 	, 'views/popin'
 	, 'views/nav'
 	, 'views/equipe'
-	, 'views/404'
-    
+	, 'views/404',
 ], function(
         Backbone,
         Loader,
@@ -40,8 +39,7 @@ define([
 			'*path': 'on404'
         },
         
-        initialize: function() {
-            
+        initialize: function() {            
             // On instancie le loader (si nécessaire...)
             this.loader = new Loader();
             
@@ -82,7 +80,7 @@ define([
             viewsHandler.getTransition(viewsArr, 'home', false, true);
 			
         },
-		
+
 		onContact: function() {
 			
 			// Exemple

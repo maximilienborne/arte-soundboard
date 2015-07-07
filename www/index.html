@@ -10,30 +10,26 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="main">
+            </div>
+        </div>
+
         <!-- JS file setting environment variable -->
         <script src="js/env-config.js"></script>
 
         <!-- Load nested or compiled CSS according to environment variable -->
         <script>
-            var css = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'src/main.css' : 'dist/main.css';
+            var css = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'main.css' : 'dist/main.css';
             css = css + '?bust=' + window.ENV_CONFIG.version;
-            document.write('<link href="css/' + css + ' rel="stylesheet" type="text/css">');
+            document.write('<link href="css/' + css + '" rel="stylesheet" type="text/css">');
         </script>
-
-        <link href="css/main.css" rel="stylesheet" type="text/css">
-
-        <!--[if lt IE 9]>
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-
-
-    </head>
-    <body>
-
-        <div id="wrapper">
-            <div id="main">
-            </div>
-        </div>
 
         <!-- Google Analytics -->
         <script>
@@ -71,7 +67,8 @@
         <!-- Load bootstrap or compiled JS according to environment variable -->
         <script>
             var file = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'app/main.js' : 'dist/app-built.js';
-            file = file + '?bust=' + window.ENV_CONFIG.version;
+
+            file += window.ENV_CONFIG.cacheArgs;
             document.write('<script data-main="js/' + file + '" src="js/app/libs/requirejs/require.js"><\/script>');
         </script>
 

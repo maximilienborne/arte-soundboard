@@ -5,3 +5,4 @@ bower_components
 www/js/dist
 www/css
 .sass-cache
+config/server.json
