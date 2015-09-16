@@ -3,8 +3,8 @@
 /* ------------------------------------------------------ */
 
 @mixin font-size($size) {
-    font-size: $size + px;
-    font-size: ($size / 16) + rem; /* Indiquer la font-size du body par défaut*/
+  font-size: $size + px;
+  font-size: ($size / 16) + rem; /* Indiquer la font-size du body par défaut*/
 }
 
 /* Responsive
@@ -29,13 +29,22 @@
 //---------------------------------------------------------------------------------------------------------
 
 @mixin input-placeholder {
-    &.placeholderfbk { @content; }
-    &:-moz-placeholder { @content; }
-    &::-moz-placeholder { @content; }
-    &::-webkit-input-placeholder { @content; }
-    &:-ms-input-placeholder { @content; }
+  &.placeholderfbk {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
-
 
 // --------------------------------------------------------------------------------------------------------
 //
@@ -44,9 +53,15 @@
 //---------------------------------------------------------------------------------------------------------
 
 @mixin hoverState {
-    &:active { @content; }
-    &:focus { @content; }
-    &:hover { @content; }
+  &:active {
+    @content;
+  }
+  &:focus {
+    @content;
+  }
+  &:hover {
+    @content;
+  }
 }
 
 // --------------------------------------------------------------------------------------------------------
@@ -56,10 +71,10 @@
 //---------------------------------------------------------------------------------------------------------
 
 @mixin hiddenText {
-    display: block;
-    text-indent: 100%;
-    overflow: hidden;
-    white-space: nowrap;
+  display: block;
+  text-indent: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 // --------------------------------------------------------------------------------------------------------
@@ -69,9 +84,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 @mixin absolute9999 {
-    position: absolute;
-    top: -9999em;
-    left: -9999em;
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
 }
 
 // --------------------------------------------------------------------------------------------------------
@@ -80,30 +95,29 @@
 //
 //---------------------------------------------------------------------------------------------------------
 
-
 // $map = sprite name $sprite = icon file name
 @mixin sprite-background($map, $sprite) {
-    background-position: sprite-position($map, $sprite);
-    @include sprite-dimensions($map, $sprite);
-    // or height: image-height(sprite-file($map, $sprite));
-    // or width: image-width(sprite-file($map, $sprite));
-    margin-left: -(image-width(sprite-file($map, $sprite)))/2;
-    margin-top: -(image-height(sprite-file($map, $sprite)))/2;
+  background-position: sprite-position($map, $sprite);
+  @include sprite-dimensions($map, $sprite);
+  // or height: image-height(sprite-file($map, $sprite));
+  // or width: image-width(sprite-file($map, $sprite));
+  margin-left: -(image-width(sprite-file($map, $sprite)))/2;
+  margin-top: -(image-height(sprite-file($map, $sprite)))/2;
 }
 
 @mixin spriteSize($map, $sprite) {
-    background: $map;
-    background-position: sprite-position($map, $sprite);
-    height: image-height(sprite-file($map, $sprite));
-    width: image-width(sprite-file($map, $sprite));
+  background: $map;
+  background-position: sprite-position($map, $sprite);
+  height: image-height(sprite-file($map, $sprite));
+  width: image-width(sprite-file($map, $sprite));
 }
 
 @mixin centeredPicto($map, $sprite) {
-    position: absolute;
-    content: "";
-    left: 50%;
-    top: 50%;
-    @include spriteSize($map, $sprite);
-    margin-left: -(image-width(sprite-file($map, $sprite)))/2;
-    margin-top: -(image-height(sprite-file($map, $sprite)))/2;
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  @include spriteSize($map, $sprite);
+  margin-left: -(image-width(sprite-file($map, $sprite)))/2;
+  margin-top: -(image-height(sprite-file($map, $sprite)))/2;
 }

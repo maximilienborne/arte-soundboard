@@ -1,13 +1,14 @@
 define([
-    
+
     'backbone'
-    
-], function(Backbone) {
-    
+
+], function (Backbone) {
+
     var ServerHandler = _.extend({}, Backbone.Events, {
-        
-        initialize: function() {}
+
+        initialize: function () {
+        }
     });
-    
+
     return ServerHandler;
 });
