@@ -1,90 +1,76 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-</head>
-<body>
-<div id="wrapper">
-    <div id="main">
-    </div>
-</div>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="main">
+            </div>
+        </div>
 
-<!-- JS file setting environment variable -->
-<script src="js/env-config.js"></script>
+        <!-- JS file setting environment variable -->
+        <script src="js/env-config.js"></script>
 
-<!-- Load nested or compiled CSS according to environment variable -->
-<script>
-    var css = (window.ENV_CONFIG && !window.ENV_CONFIG.minify) ? 'main.css' : 'dist/main.css';
-    css = css + '?bust=' + window.ENV_CONFIG.version;
-    document.write('<link href="css/' + css + '" rel="stylesheet" type="text/css">');
-</script>
+        <!-- Load nested or compiled CSS according to environment variable -->
+        <script>
+            var css = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'main.css' : 'dist/main.css';
+            css = css + '?bust=' + window.ENV_CONFIG.version;
+            document.write('<link href="css/' + css + '" rel="stylesheet" type="text/css">');
+        </script>
 
-<!-- Google Analytics -->
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        <!-- Google Analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    //ga('create', 'UA-XXXXXXXX-X', 'auto');
+            //ga('create', 'UA-XXXXXXXX-X', 'auto');
 
-</script>
-<!-- End Google Analytics -->
+        </script>
+        <!-- End Google Analytics -->
 
-<!-- Facebook SDK -->
-<script>
+        <!-- Facebook SDK -->
+        <script>
 
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: XXXXXXXXXXXXX,
-            xfbml: true,
-            version: 'v2.0'
-        });
-    };
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : XXXXXXXXXXXXX,
+                    xfbml      : true,
+                    version    : 'v2.0'
+                });
+            };
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<!-- /Facebook SDK -->
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <!-- /Facebook SDK -->
 
-<!-- Load bootstrap or compiled JS according to environment variable -->
-<script>
-    var file = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'app/main.js' : 'dist/app-built.js';
+        <!-- Load bootstrap or compiled JS according to environment variable -->
+        <script>
+            var file = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'app/main.js' : 'dist/app-built.js';
 
-    file += window.ENV_CONFIG.cacheArgs;
-    document.write('<script data-main="js/' + file + '" src="js/app/libs/requirejs/require.js"><\/script>');
-</script>
+            file += window.ENV_CONFIG.cacheArgs;
+            document.write('<script data-main="js/' + file + '" src="js/app/libs/requirejs/require.js"><\/script>');
+        </script>
 
-</body>
+    </body>
 </html>

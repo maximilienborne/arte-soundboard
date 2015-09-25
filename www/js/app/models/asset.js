@@ -1,16 +1,16 @@
 define([
     'backbone'
-
-], function (Backbone) {
-
+    
+], function(Backbone) {
+    
     var Asset = Backbone.Model.extend({
-
+        
         defaults: {
             type: '',
             path: '',
             loaded: false
         }
     });
-
+    
     return Asset;
 });

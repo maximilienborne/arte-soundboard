@@ -1,6 +1,6 @@
 var pkgjson = require('./package.json');
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     var config = {
         pkg: pkgjson,
@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         server: grunt.file.readJSON('server.json')
     };
 
-    // Project configuration.
+   // Project configuration.
     grunt.initConfig({
         config: config,
         pkg: config.pkg,
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
                     }
                 },
                 bsFiles: {
-                    src: [
+                    src : [
                         '<%= config.baseUrl %>/css/**/*',
                         '<%= config.baseUrl %>/js/**/*',
                         '<%= config.baseUrl %>/templates/**/*',
@@ -141,9 +141,9 @@ module.exports = function (grunt) {
         //   }
         // }
 
-        // CONFIG ===================================/
+    // CONFIG ===================================/
 
-    });
+   });
 
     // DEPENDENT PLUGINS =========================/
     require('load-grunt-tasks')(grunt);
