@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     config: 'config.rb',
-                    cssDir: '<%= config.baseUrl %>/css/dist',
+                    cssDir: '<%= config.baseUrl %>/css',
                     environment: 'production'
                 }
             }
