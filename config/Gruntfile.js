@@ -95,7 +95,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.baseUrl %>/img',
-                    src: '{,*/}*.{png,jpg,jpeg}',
+                    src: '{,**/}*.{png,jpg,jpeg}',
                     dest: '<%= config.baseUrl %>/img'
                 }]
             }
@@ -105,41 +105,11 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.baseUrl %>/img',
-                    src: '{,*/}*.svg',
+                    src: '{,**/}*.svg',
                     dest: '<%= config.baseUrl %>/img'
                 }]
             }
         }
-
-        // connect: {
-        //     server: {
-        //         options: {
-        //             livereload: true,
-        //             port: 9001,
-        //             base: '../www',
-        //             open: {
-        //                 target: 'http://localhost:9001'
-        //             }
-        //         }
-        //     }
-        // },
-        // copy: {
-        //     main: {
-        //         files: [
-        //             // includes files within path and its sub-directories
-        //             {expand: true, cwd: './www/', src: ['img/**'], dest: 'src/'},
-        //         ],
-        //   },
-        // },
-        // dist: {
-        //     files: [{
-        //         expand: true,
-        //         cwd: './www/img',
-        //         src: ['**/*.{png,jpg,gif}'],
-        //         dest: 'dist/'
-        //     }]
-        //   }
-        // }
 
     // CONFIG ===================================/
 
