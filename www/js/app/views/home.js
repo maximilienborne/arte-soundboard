@@ -25,7 +25,8 @@ define([
         },
         
         render: function() {
-        	this.template = _.template(tmp, { sounds : this.options.sounds.toJSON() });
+            console.log(this.options.sounds);
+        	this.template = _.template(tmp, { sounds : this.options.sounds, global:this.options.global });
             return this.$el.html(this.template, {});
         },
         onPlay: function (e) {
@@ -38,14 +39,17 @@ define([
         onRollOut: function (e) {
             $('.hover').hide();
         },
-		onFacebook: function (e) {
+		
+        onFacebook: function (e) {
             e.preventDefault();
             var title = $(e.currentTarget).data('fbtitle'),
                 description = $(e.currentTarget).data('fbdesc'),
-                image = $(e.currentTarget).data('fbimage'),
-                url = this.currentReferrer+'?sid='+$(e.currentTarget).parent().attr('id');
-
-            console.log(description);
+                image = $(e.currentTarget).data('fbimage');
+            if($(e.currentTarget).parents("#global-shares").length > 0) {
+                var url = this.currentReferrer;
+            } else {
+                var url = this.currentReferrer+'?sid='+$(e.currentTarget).parent().attr('id');
+            }
             FB.ui({
                 method: 'share',
                 href: url,
@@ -65,9 +69,13 @@ define([
                 height = 300,
                 left = screen.width / 2 - width / 2,
                 top = screen.height / 2 - height / 2,
-                description = $(e.currentTarget).data('tw'),
-                url = this.currentReferrer+'?sid='+$(e.currentTarget).parent().attr('id');
-                dataTW = 'https://twitter.com/share?&text=' + description + '&url=' + encodeURIComponent(url) + '&hashtags=SoundBoard ';
+                description = $(e.currentTarget).data('tw');
+            if($(e.currentTarget).parents("#global-shares").length > 0) {
+                var url = this.currentReferrer;
+            } else {
+                var url = this.currentReferrer+'?sid='+$(e.currentTarget).parent().attr('id');
+            }
+            var dataTW = 'https://twitter.com/share?&text=' + description + '&url=' + encodeURIComponent(url) + '&hashtags=SoundBoard ';
 
             open(dataTW, 'popup_twitter', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
 

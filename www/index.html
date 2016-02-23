@@ -26,7 +26,7 @@
 
         <!-- Load nested or compiled CSS according to environment variable -->
         <script>
-            var css = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'main.css' : 'main-built.css';
+            var css = (window.ENV_CONFIG && window.ENV_CONFIG.minify !== true) ? 'main.css' : 'main.css';
             css = css + '?bust=' + window.ENV_CONFIG.version;
             document.write('<link href="css/' + css + '" rel="stylesheet" type="text/css">');
         </script>

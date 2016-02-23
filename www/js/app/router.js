@@ -6,6 +6,7 @@ define([
     , 'services/server-handler'
 	, 'services/views-handler'
     , 'services/tracker'
+    , 'models/global'
 	, 'views/header'
 	, 'views/footer'
 	, 'views/home'
@@ -14,7 +15,6 @@ define([
 	, 'views/nav'
 	, 'views/equipe'
 	, 'views/404'
-	, 'collections/sounds'
 
 ], function(
         Backbone,
@@ -23,6 +23,7 @@ define([
         serverHandler,
 		viewsHandler,
         tracker,
+        GlobalModel,
 		HeaderView,
 		FooterView,
 		HomeView,
@@ -30,8 +31,7 @@ define([
 		PopinView,
 		NavView,
 		EquipeView,
-		P404View,
-		Sounds
+		P404View
     ) {
     
     var Router = Backbone.Router.extend({
@@ -57,10 +57,13 @@ define([
 			serverHandler.initialize();
             // Initialisation du tracker (pour la remontée des stats)
             tracker.initialize();
-            
-
-			this.sounds = new Sounds();
-			this.sounds.fetch();
+            this.global = new GlobalModel();
+            d0 = new $.Deferred();
+            $.getJSON('json/global.json', _.bind(function (data) {
+                this.global.set('data', data.datas[0]);
+                this.global.set('sounds', data.sounds);
+                d0.resolve();
+            }, this));
 			// Si des assets ont besoin d'être chargés
 			// avant de lancer le routeur
 			this.loader.loadAssetsBeforeStart('json/assets.json', $('#main'));
@@ -73,11 +76,11 @@ define([
 			// Exemple
 			
 			this.headerView = this.headerView || new HeaderView();
-			this.homeView = this.homeView || new HomeView({ sounds: this.sounds });
+			this.homeView = this.homeView || new HomeView({ sounds: this.global.get('sounds'), global :this.global.get('data') });
 			this.footerView = this.footerView || new FooterView();
 			
 			var viewsArr = [this.headerView, this.homeView, this.footerView];
-			
+			console.log(this.global.get('data').profile);
 			
 			viewsHandler.getPopin(viewsArr);
             viewsHandler.getTransition(viewsArr, 'home', false, true);
