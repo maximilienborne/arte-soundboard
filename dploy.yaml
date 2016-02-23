@@ -1,0 +1,11 @@
+prod:
+    scheme: sftp
+    host: sftp.dc2.gpaas.net
+    user: "595158"
+    pass: "Freeb0x1989"
+    check: true
+    path:
+        local: "www/"
+        remote: "/srv/data/web/vhosts/59e98dcb55.testurl.ws/htdocs/"
+    exclude: [".gitignore", "*.sh", "config.rb", "sass/**", "utils/**",".sass-cache/**"]
+

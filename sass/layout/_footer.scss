@@ -1,6 +1,22 @@
-.l-footer {
-	padding: 2em;
-    background-color: blue;
+#footer { /* passer à p- */
+    padding: 5%;
+    width: 90%;
+    min-height: 15em;
     color: white;
-    clear: both;
+    float: left;
+
+    .l-footer {
+		padding: 1.8em;
+		border-top:1px solid #7c7c7c;
+	    color: #7c7c7c;
+	    clear: both;
+	    h3{
+			font-size:0.8em;
+			font-family:Gotham-Book, Arial, sans-serif;
+			text-align:center;
+	    }
+	}
 }
+
+
+

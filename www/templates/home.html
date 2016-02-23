@@ -1,4 +1,28 @@
 <div class="p-home">
-    <h1>Homepage</h1>
-    <a href="#p/popin">Ouvrir une popin</a>
+    <h1>P’tit Quinquin Soundboard</h1>
+    <h2>Ecoutez les meilleures répliques de la série</h2>
+    <ul id="global-shares">
+    	<li><a class="fb" href="#"></a></li>
+    	<li><a class="tw" href="#"></a></li>
+    </ul>
+      <ul id="pads" >
+      	<% for (s in sounds) { %>
+	      <li id="sound-<%=s %>">
+	      	<div class="container">
+	      		<span class="desc" >
+			      	<img src="<%=sounds[s].img_desktop %>"/>
+				      	<br/>
+				      	<span><%=sounds[s].title %></span>
+		      	</span>
+		      	<div class="hover">
+		      		<div id="<%=s %>" class='actions'>
+				      	<a href="#" data-fbimage="<%=sounds[s].img_desktop %>" data-fbtitle="<%=sounds[s].fb_share_title %>" data-fbdesc="<%=sounds[s].fb_share_desc %>" class='fb'></a>
+				      	<a href="<%=sounds[s].mp3 %>" class='sound'></a>
+				      	<a href="#" data-tw="<%=sounds[s].tw_share %>" class='tw'></a>
+			      	</div>
+		      	</div>
+	      	</div>
+	      </li>
+	      <% } %>
+    </ul>
 </div>

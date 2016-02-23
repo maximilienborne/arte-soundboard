@@ -5,9 +5,9 @@
     Env.config = {
         environments: {
             "dev": "local",
-            "dev-extern": "10.224",
-            "preprod": "gitlab.marceldev",
-            "prod": ""
+            "dev-extern": "extern",
+            "preprod": "preprod",
+            "prod": "testurl"
         },
         debug: {
             "dev": true,

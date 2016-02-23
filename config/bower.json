@@ -1,5 +1,5 @@
 {
-  "name": "marcelStrap",
+  "name": "Arte",
   "version": "0.0.1",
   "description": "backbone and rjs boilerplate",
   "license": "MIT",
@@ -21,6 +21,6 @@
     "mobile-detect": "hgoebl/mobile-detect.js#~0.4.3"
   },
   "authors": [
-    "Lucia Barroso <lucia.barroso@marcelww.com>"
+    "Maximilien Borne <maximilien.borne@gmail.com>"
   ]
 }

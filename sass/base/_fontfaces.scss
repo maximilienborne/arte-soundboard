@@ -3,27 +3,56 @@
 /* ------------------------------------------------------ */
 
 @font-face {
-    font-family: 'gillsansstd';
-    src: url('../fonts/gillsansstd-webfont.eot');
-    src: url('../fonts/gillsansstd-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/gillsansstd-webfont.woff') format('woff'),
-         url('../fonts/gillsansstd-webfont.ttf') format('truetype'),
-         url('../fonts/gillsansstd-webfont.svg#gillsansstd') format('svg');
+    font-family: 'HelveticaNeue-CondensedBold';
+    src: url('../fonts/HelveticaNeue-CondensedBold.eot');
+    src: url('../fonts/HelveticaNeue-CondensedBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HelveticaNeue-CondensedBold.woff') format('woff'),
+         url('../fonts/HelveticaNeue-CondensedBold.ttf') format('truetype'),
+         url('../fonts/HelveticaNeue-CondensedBold.svg#gillsansstd') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'helveticaneueltstd_md-webfont';
+    src: url('../fonts/helveticaneueltstd_md-webfont.eot');
+    src: url('../fonts/helveticaneueltstd_md-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneueltstd_md-webfont.woff') format('woff'),
+         url('../fonts/helveticaneueltstd_md-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneueltstd_md-webfont.svg#gillsansstd') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* ------------------------------------------------------ */
+/* STANDARD
+/* ------------------------------------------------------ */
+
+@font-face {
+    font-family: 'Gotham-Book';
+    src: url('../fonts/Gotham-Book.eot');
+    src: url('../fonts/Gotham-Book.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.ttf') format('truetype'),
+         url('../fonts/Gotham-Book.svg#gillsansstd') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 /* ------------------------------------------------------ */
-/* Light
+/* MEDIUM
 /* ------------------------------------------------------ */
 
 @font-face {
-    font-family: 'gillsansstd-light';
-    src: url('../fonts/gillsansstd-light.eot');
-    src: url('../fonts/gillsansstd-light.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/gillsansstd-light.woff') format('woff'),
-         url('../fonts/gillsansstd-light.ttf') format('truetype'),
-         url('../fonts/gillsansstd-light.svg#gillsanslight') format('svg');
+    font-family: 'Gotham-Medium';
+    src: url('../fonts/Gotham-Medium.eot');
+    src: url('../fonts/Gotham-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Gotham-Medium.woff') format('woff'),
+         url('../fonts/Gotham-Medium.ttf') format('truetype'),
+         url('../fonts/Gotham-Medium.svg#gillsanslight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -33,12 +62,12 @@
 /* ------------------------------------------------------ */
 
 @font-face {
-    font-family: 'gillsansstd-bold';
-    src: url('../fonts/gillsansstd-bold.eot');
-    src: url('../fonts/gillsansstd-bold.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/gillsansstd-bold.woff') format('woff'),
-         url('../fonts/gillsansstd-bold.ttf') format('truetype'),
-         url('../fonts/gillsansstd-bold.svg#gillsansbold') format('svg');
+    font-family: 'Gotham-Bold';
+    src: url('../fonts/Gotham-Bold.eot');
+    src: url('../fonts/Gotham-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Gotham-Bold.woff') format('woff'),
+         url('../fonts/Gotham-Bold.ttf') format('truetype'),
+         url('../fonts/Gotham-Bold.svg#gillsansbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }

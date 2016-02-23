@@ -1,5 +1,22 @@
 .l-header {
-    padding: 2em;
-    background-color: yellow;
+    width: 808px;
+    margin:0 auto;
     color: black;
+    @media screen and (max-width: 1024px) {
+      width:100%; 
+    }
+    img.logo-arte {
+        width:87px;
+        display: block;
+        margin:0 auto;
+        @media screen and (max-width: 1024px) {
+          width:55px;
+        }
+        margin-bottom:20px;
+    }
+    img.header-soundboard {
+    	@media screen and (max-width: 1024px) {
+	      width:100%;
+	    }
+    }
 }

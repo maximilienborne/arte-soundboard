@@ -7,12 +7,18 @@ require.config({
     , text: 'libs/requirejs-text/text'
     , templates: '../../templates'
     , mobileDetect: 'libs/mobile-detect/mobile-detect'
+    , inlineplayer: 'libs/inlineplayer/inlineplayer'
+    , soundmanager2: 'libs/soundmanager2/soundmanager2'
   },
   shim: {
   	backbone: {
-  		deps: [ 'underscore', 'jquery' ]
+  		deps: [ 'underscore', 'jquery', 'inlineplayer']
   		, exports: 'Backbone'
   	},
+    inlineplayer: {
+      deps: [ 'soundmanager2' ]
+      , exports: 'Inlineplayer'
+    },
     mobileDetect: {
         exports: 'MobileDetect'
     }

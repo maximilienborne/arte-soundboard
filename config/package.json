@@ -1,12 +1,12 @@
 {
-  "name": "marcelStrap",
+  "name": "Arte",
   "version": "0.0.0",
   "description": "backbone & rjs boilerplate",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "MarcelLab",
+  "author": "Maximilien",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^0.4.5",

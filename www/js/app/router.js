@@ -13,7 +13,9 @@ define([
 	, 'views/popin'
 	, 'views/nav'
 	, 'views/equipe'
-	, 'views/404',
+	, 'views/404'
+	, 'collections/sounds'
+
 ], function(
         Backbone,
         Loader,
@@ -28,15 +30,14 @@ define([
 		PopinView,
 		NavView,
 		EquipeView,
-		P404View
+		P404View,
+		Sounds
     ) {
     
     var Router = Backbone.Router.extend({
         routes: {
             '(p/:popin)': 'onHomepage',
-			'contact(/p/:popin)': 'onContact',
-			'equipe(/p/:popin)': 'onEquipe',
-			'*path': 'on404'
+			'*path': 'onHomepage'
         },
         
         initialize: function() {            
@@ -57,6 +58,9 @@ define([
             // Initialisation du tracker (pour la remontée des stats)
             tracker.initialize();
             
+
+			this.sounds = new Sounds();
+			this.sounds.fetch();
 			// Si des assets ont besoin d'être chargés
 			// avant de lancer le routeur
 			this.loader.loadAssetsBeforeStart('json/assets.json', $('#main'));
@@ -69,11 +73,10 @@ define([
 			// Exemple
 			
 			this.headerView = this.headerView || new HeaderView();
-			this.navView = this.navView || new NavView();
-			this.homeView = this.homeView || new HomeView();
+			this.homeView = this.homeView || new HomeView({ sounds: this.sounds });
 			this.footerView = this.footerView || new FooterView();
 			
-			var viewsArr = [this.headerView, this.navView, this.homeView, this.footerView];
+			var viewsArr = [this.headerView, this.homeView, this.footerView];
 			
 			
 			viewsHandler.getPopin(viewsArr);

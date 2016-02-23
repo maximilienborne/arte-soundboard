@@ -1,4 +1,4 @@
 {
-    "base_url": "project.dev",
+    "base_url": "http://localhost:8080/arte/www/",
     "path": ""
 }

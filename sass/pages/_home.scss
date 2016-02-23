@@ -1,21 +1,172 @@
 #home { /* passer à p- */
-    padding: 5%;
-    width: 60%;
+    padding: 0 5% 0 5%;
+    width: 90%;
     min-height: 15em;
-    background: black;
     color: white;
     float: left;
-    @include transform-origin(100%, 50%);
-    @include rotateY(-130deg);
-    @include transition(transform .5s ease-out);
-    position: absolute;
-    right: 0;
 
     &.active {
         @include rotateY(0deg);
     }
+    h1{
+        font-family:HelveticaNeue-CondensedBold, Arial, sans-serif;
+        text-align:center;
+        font-size:3em;
+        color:$soundboard-color-theme;
+        font-weight:bold;
+        margin-bottom: 20px;
+        @media screen and (max-width: 768px) {
+         font-size:2.5em;
+        }
+    }
+    h2{
+         font-family:Gotham-Medium;
+            font-size:1em;
+            color: #393939;
+            text-align:center;
+    }
+    ul#global-shares {
+        width: 90px;
+        overflow:auto;
+        margin:0 auto;
+            li {
+                float:left;
+                position:relative;
+                .fb {
+                    background: url("../img/sprite.png") -9px 81px;
+                    display: block;
+                    width: 44px;
+                    height: 46px;
+                }
+                .tw {
+                    background: url("../img/sprite.png") -57px 81px;
+                    display: block;
+                    width: 44px;
+                    height: 46px;
+                }
+            }
+        margin-bottom:50px;
+    }
+    ul#pads {
+        overflow:auto;
+        li {
+            width:25%;
+            min-height: 300px;
+            @media screen and (max-width: 1024px) {
+              width:33%;
+            }
+            @media screen and (max-width: 768px) {
+              width:50%;
+              min-height: 300px;
+            }
+            @media screen and (max-width: 450px) {
+              min-height: 200px;
+            }
 
-    a {
-        color: white;
+            img {
+                @media screen and (max-width: 450px) {
+                  width:100px;
+                }
+            }
+
+            text-align:center;
+            float:left;
+
+            span.desc {
+                font-family:Gotham-Bold;
+                font-size:0.8em;
+                color: $soundboard-color-theme;
+                text-decoration:none;
+                span {
+                    width: 80%;
+                    line-height:1.4em;
+                    margin-top:20px;
+                    @media screen and (max-width: 450px) {
+                    margin-top:5px;
+                    }
+                    @media screen and (max-width: 768px) {
+                    margin-top:15px;
+                    }
+                    display: inline-block;
+                }
+            }
+
+            div.container {
+                position: relative; 
+                width:190px; 
+                height:190px;
+                @media screen and (max-width: 450px) {
+                    width:100px;
+                    height:100px;
+                }
+                margin:0 auto;
+                 .sound {
+                    background: url("../img/sprite.png") -172px -11px;
+                    display: block;
+                    position: absolute;
+                    top: 70px;
+                    left: 74px;
+                    width: 40px;
+                    height: 40px;
+                    @media screen and (max-width: 450px) {
+                        top: 24px;
+                        left: 30px;
+                    }
+                }
+
+                .sm2_playing {
+                    background: url("../img/sprite.png") -52px -11px!important;
+                    display: block;
+                    position: absolute;
+                    top: 70px;
+                    left: 74px;
+                    width: 40px;
+                    height: 40px;
+                      @media screen and (max-width: 450px) {
+                        top: 24px;
+                        left: 30px;
+                    }
+                }
+                
+                .fb {
+                    background: url("../img/sprite.png") 0px -11px;
+                    display: block;
+                    position: absolute;
+                    top: 70px;
+                    left: 24px;
+                    width: 40px;
+                    height: 40px;
+                     @media screen and (max-width: 450px) {
+                      display:none;
+                    }
+                }
+                .tw {
+                    background: url("../img/sprite.png") -112px -11px;
+                    display: block;
+                    position: absolute;
+                    top: 70px;
+                    left: 124px;
+                    width: 40px;
+                    height: 40px;
+                    @media screen and (max-width: 450px) {
+                      display:none;
+                    }
+                }
+            }
+            div.hover {
+                display:none;
+                background: url('../img/overlay.png');
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-border-radius: 100px;
+                border-radius: 100px;
+                .actions {
+                    top: 7px;
+                    position: relative;
+                }
+            }
+        }
     }
 }
