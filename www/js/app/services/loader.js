@@ -43,7 +43,7 @@ define([
             }, this);
         },
 		
-		loadAssetsBeforeStart: function(json, $el) {
+		loadAssetsBeforeStart: function(json, $el, callback) {
 			var d1 = new $.Deferred();
 			
             // On récupère la liste des assets à charger
@@ -73,7 +73,7 @@ define([
                     this.loaderView.remove();
 					delete this.loaderView;
                     
-                    Backbone.history.start();
+                    callback.call(this);
                     
                 }, this));
             }, this));

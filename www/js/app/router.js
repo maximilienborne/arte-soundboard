@@ -59,6 +59,8 @@ define([
             tracker.initialize();
             this.global = new GlobalModel();
             d0 = new $.Deferred();
+            d1 = new $.Deferred();
+
             $.getJSON('json/global.json', _.bind(function (data) {
                 this.global.set('data', data.datas[0]);
                 this.global.set('sounds', data.sounds);
@@ -66,7 +68,14 @@ define([
             }, this));
 			// Si des assets ont besoin d'être chargés
 			// avant de lancer le routeur
-			this.loader.loadAssetsBeforeStart('json/assets.json', $('#main'));
+			this.loader.loadAssetsBeforeStart('json/assets.json', $('#main'), function(){
+				d1.resolve();
+			});
+			$.when(d0, d1).done(_.bind(function () {
+				Backbone.history.start();
+            }, this));
+
+
 			// Sinon
 			//Backbone.history.start();
         },

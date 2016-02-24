@@ -21,6 +21,35 @@ define([
         	this.options = options;
             this.currentReferrer = document.referrer.split('?');
             this.currentReferrer = this.currentReferrer[0];
+            var that = this;
+            soundManager.setup({
+                debugMode: false,
+                debugFlash:false,
+                wmode: 'transparent',
+                url: 'swf/',
+                onready: function() {
+                    if(window.location.hash) {
+                        var hash = String(window.location.hash).replace('#', '');
+                        var paramsArr = hash.split('/');
+                        var i = _.indexOf(paramsArr, 'p');
+                        var popinId = paramsArr[i + 1];
+                        if(!isNaN(parseFloat(popinId)) && isFinite(popinId)){
+                             var introSound = soundManager.createSound({
+                              id: 'introSound',
+                              url: that.options.sounds[popinId].mp3
+                            });
+                            introSound.play();
+                        }
+                    } else {
+                    }
+                 
+                },
+                ontimeout: function() {
+                }
+            });
+
+
+
             console.log(this.currentReferrer);
         },
         
@@ -31,6 +60,7 @@ define([
         onPlay: function (e) {
             e.preventDefault();
             $(e.currentTarget).removeClass('play');
+            return false;
         },
         onRollOver: function (e) {
             $(e.currentTarget).find('.hover').show();
@@ -81,33 +111,6 @@ define([
         },
 
 		onShow: function(deferred) {
-            var that = this;
-			soundManager.setup({
-				debugMode: false,
-				debugFlash:false,
-				wmode: 'transparent',
-				url: 'swf/',
-				onready: function() {
-                    if(window.location.hash) {
-                        var hash = String(window.location.hash).replace('#', '');
-                        var paramsArr = hash.split('/');
-                        var i = _.indexOf(paramsArr, 'p');
-                        var popinId = paramsArr[i + 1];
-                        if(!isNaN(parseFloat(popinId)) && isFinite(popinId)){
-                             var introSound = soundManager.createSound({
-                              id: 'introSound',
-                              url: that.options.sounds[popinId].mp3
-                            });
-                            introSound.play();
-                        }
-                    } else {
-                    }
-				 
-				},
-				ontimeout: function() {
-				}
-			});
-
 			this.$el.addClass('active');
 			setTimeout(_.bind(function() {
 				deferred.resolve();
