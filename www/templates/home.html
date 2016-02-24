@@ -2,8 +2,8 @@
     <h1><%=global.title %></h1>
     <h2><%=global.subtitle %></h2>
     <ul id="global-shares">
-    	<li><a class="fb" data-fbimage="img/header.jpg" data-fbtitle="Title Global" data-fbdesc="Desc Global" href="#"></a></li>
-    	<li><a class="tw" data-tw="Twitter Global" href="#"></a></li>
+    	<li><a class="fb" data-fbimage="img/header.jpg" data-fbtitle="<%=global.fbtitle %>" data-fbdesc="<%=global.fbdesc %>" href="#"></a></li>
+    	<li><a class="tw" data-tw="<%=global.tw %>" data-hashtag="<%=global.hashtag %>" href="#"></a></li>
     </ul>
       <ul id="pads" >
       	<% for (s in sounds) { %>
@@ -18,7 +18,7 @@
 		      		<div id="<%=s %>" class='actions'>
 				      	<a href="#" data-fbimage="<%=sounds[s].img_desktop %>" data-fbtitle="<%=sounds[s].fb_share_title %>" data-fbdesc="<%=sounds[s].fb_share_desc %>" class='fb'></a>
 				      	<a href="<%=sounds[s].mp3 %>" class='sound'></a>
-				      	<a href="#" data-tw="<%=sounds[s].tw_share %>" class='tw'></a>
+				      	<a href="#" data-hashtag="<%=global.hashtag %>" data-tw="<%=sounds[s].tw_share %>" class='tw'></a>
 			      	</div>
 		      	</div>
 	      	</div>

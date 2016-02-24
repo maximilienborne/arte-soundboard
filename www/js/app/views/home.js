@@ -98,13 +98,14 @@ define([
                 height = 300,
                 left = screen.width / 2 - width / 2,
                 top = screen.height / 2 - height / 2,
-                description = $(e.currentTarget).data('tw');
+                description = $(e.currentTarget).data('tw'),
+                hashtag = $(e.currentTarget).data('hashtag');
             if($(e.currentTarget).parents("#global-shares").length > 0) {
                 var url = this.currentReferrer;
             } else {
                 var url = this.currentReferrer+'?sid='+$(e.currentTarget).parent().attr('id');
             }
-            var dataTW = 'https://twitter.com/share?&text=' + description + '&url=' + encodeURIComponent(url) + '&hashtags=SoundBoard ';
+            var dataTW = 'https://twitter.com/share?&text=' + description + '&url=' + encodeURIComponent(url) + '&hashtags='+hashtag;
 
             open(dataTW, 'popup_twitter', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
 

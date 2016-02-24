@@ -3,7 +3,11 @@
     {
       "profile" : "test",
       "title" : "P’tit Quinquin Soundboard",
-      "subtitle" : "Ecoutez les meilleures répliques de la série"
+      "subtitle" : "Ecoutez les meilleures répliques de la série",
+      "fbtitle": "Facebook Global Title",
+      "fbdesc": "Facebook Global Desc",
+      "tw" : "Twitter Share",
+      "hashtag" : "SoundBoard"
     }
   ],
   "sounds":[
