@@ -25,7 +25,6 @@ define([
         },
         
         render: function() {
-            console.log(this.options.sounds);
         	this.template = _.template(tmp, { sounds : this.options.sounds, global:this.options.global });
             return this.$el.html(this.template, {});
         },
@@ -97,7 +96,7 @@ define([
                         if(!isNaN(parseFloat(popinId)) && isFinite(popinId)){
                              var introSound = soundManager.createSound({
                               id: 'introSound',
-                              url: that.options.sounds.toJSON()[popinId].mp3
+                              url: that.options.sounds[popinId].mp3
                             });
                             introSound.play();
                         }
