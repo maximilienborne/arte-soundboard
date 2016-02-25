@@ -84,7 +84,7 @@ define([
                 href: url,
                 name: title,
                 title: title,
-                picture: 'http://'+window.location.host + '/'+image,
+                picture: image,
                 description: description
             }, _.bind(function (e) {
 

@@ -7,7 +7,8 @@
       "fbtitle": "Facebook Global Title",
       "fbdesc": "Facebook Global Desc",
       "tw" : "Twitter Share",
-      "hashtag" : "SoundBoard"
+      "hashtag" : "SoundBoard",
+      "static_url" : "http://infographic.arte.tv/cinema/soundboard/"
     }
   ],
   "sounds":[
