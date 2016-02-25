@@ -28,19 +28,18 @@ define([
                 wmode: 'transparent',
                 url: 'swf/',
                 onready: function() {
-                    if(window.location.hash) {
-                        var hash = String(window.location.hash).replace('#', '');
-                        var paramsArr = hash.split('/');
-                        var i = _.indexOf(paramsArr, 'p');
-                        var popinId = paramsArr[i + 1];
-                        if(!isNaN(parseFloat(popinId)) && isFinite(popinId)){
+                    if(window.parent.location.search) {
+                        soundId = window.parent.location.search.split("=");
+                        soundId = soundId[1];
+                        if(!isNaN(parseFloat(soundId)) && isFinite(soundId)){
                              var introSound = soundManager.createSound({
                               id: 'introSound',
-                              url: that.options.sounds[popinId].mp3
+                              url: that.options.sounds[soundId].mp3
                             });
                             introSound.play();
                         }
-                    } else {
+                    }
+                    else {
                     }
                  
                 },
